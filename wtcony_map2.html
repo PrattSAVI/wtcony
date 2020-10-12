@@ -124,12 +124,12 @@
                             if (data.features[i].properties.OrgName === cbo) {
                                 selected_mission = data.features[i].properties.Mission;
                                 selected_name = data.features[i].properties.OrgName;
-                                geo_n = i
+                                geo_n = i // I'll use this to zoom
                             };
                         }
                         document.getElementById('replace_mission').innerHTML = '<strong>' + selected_name + '</strong><br><strong>Mission Statement: </strong>' + selected_mission;
                         var bounds = turf.bbox(data.features[geo_n]);
-                        map.fitBounds(bounds, {
+                        map.fitBounds(bounds, { // zoom
                             padding: 20
                         });
                     };
@@ -137,7 +137,7 @@
                     //I am sure there is a classier way of doing this, but I am getting the clicked groups name
                     //using jqeuery from alt field. I'll use this to filter. 
                     //!!!!--------WE HAVE TO MAKE SURE ALT FIELD MATCHED THE DATA------!!!!
-                    $(document).on("click", "#circle-images", function(event) {
+                    $(document).on("click", "#circle-images", function(event) { // Clicked alt is saved to var cbo
                         console.log(event.target.alt);
                         cbo = event.target.alt;
                         filterBy(cbo);
