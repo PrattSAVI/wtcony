@@ -11,6 +11,7 @@
     <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="/js/leaflet-0.7.2/leaflet.ajax.min.js"></script>
     <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src='https://unpkg.com/@turf/turf/turf.min.js'></script>
 
 
     <style>
@@ -110,8 +111,11 @@
 
 
                     console.log('Data is loaded, Ready to go!'); //Notify me when the data is loaded
+                    console.log(data);
 
                     var cbo = 'Something'; //No gorups will be selected
+                    var geo_n = null;
+
                     function filterBy(cbo) { //Define filter for data
                         var filters = ['==', 'OrgName', cbo];
                         map.setFilter('groups', filters);
@@ -119,9 +123,15 @@
                         for (var i = 0; i < data.features.length; i++) { // Get selected groups mission statement
                             if (data.features[i].properties.OrgName === cbo) {
                                 selected_mission = data.features[i].properties.Mission;
+                                selected_name = data.features[i].properties.OrgName;
+                                geo_n = i
                             };
                         }
-                        document.getElementById('replace_mission').innerHTML = selected_mission;
+                        document.getElementById('replace_mission').innerHTML = '<strong>' + selected_name + '</strong><br><strong>Mission Statement: </strong>' + selected_mission;
+                        var bounds = turf.bbox(data.features[geo_n]);
+                        map.fitBounds(bounds, {
+                            padding: 20
+                        });
                     };
 
                     //I am sure there is a classier way of doing this, but I am getting the clicked groups name
