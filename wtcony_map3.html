@@ -168,10 +168,11 @@
                             elements[i].style.opacity = 1;
                         }
                         map.setFilter('groups', null);
-                        var bounds = turf.bbox(data);
+                        var bounds = turf.bbox(data.features[5]); //5th is whole 5 boroughs
                         map.fitBounds(bounds, { // zoom
-                            padding: 20
+                            padding: 100
                         });
+                        document.getElementById('replace_mission').innerHTML = 'Click on any photo on the left for more information about the organization.'
                     })
 
                     //I am sure there is a classier way of doing this, but I am getting the clicked groups name
@@ -199,11 +200,15 @@
                     map.addLayer({
                         'id': 'groups',
                         'source': 'groups',
-                        'type': 'fill',
+                        'type': 'line',
                         'paint': { //Styling
-                            'fill-color': 'black',
-                            'fill-opacity': 0.6
+                            'line-color': '#f4a261',
+                            'line-opacity': 0.8,
+                            'line-width': 2,
                         },
+                        'layout': {
+                            'line-join': 'round',
+                        }
                     });
 
                 });
