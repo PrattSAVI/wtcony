@@ -1,4 +1,4 @@
-## WHO TAKES CARE OF NY? ONLINE EXHIBTION MATERIAL
+## "WHO TAKES CARE OF NY?" ONLINE EXHIBITION MATERIAL
 Skectes for web app visualizing selected CBO turf and quotes using Mapbox GL.  
 Data used in the web app is [here](https://github.com/PrattSAVI/STEW_MAP/tree/master/group_data).  
 
